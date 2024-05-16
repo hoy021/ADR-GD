@@ -1,0 +1,83 @@
+# Tuned
+Pendulum-v1:
+  n_timesteps: 20000
+  policy: 'MlpPolicy'
+  gamma: 0.98
+  buffer_size: 200000
+  learning_starts: 1500
+  noise_type: 'normal'
+  noise_std: 0.1
+  gradient_steps: -1
+  train_freq: [1, "episode"]
+  learning_rate: !!float 1e-3
+  policy_kwargs: "dict(net_arch=[400, 300])"
+  optimize_action_epsilon: 0.25 
+  ncopt_epsilon: 1.
+  ncopt_T: 100
+  ncopt_lr: 0.1
+  ncopt_lr_sigma: 0.25
+  ncopt_c: 0.5
+  ncopt_noise_scale: 0.025
+
+LunarLanderContinuous-v2:
+  n_timesteps: !!float 3e5
+  policy: 'MlpPolicy'
+  gamma: 0.98
+  buffer_size: 200000
+  learning_starts: 10000
+  noise_type: 'normal'
+  noise_std: 0.1
+  gradient_steps: -1
+  train_freq: [1, "episode"]
+  learning_rate: !!float 1e-3
+  policy_kwargs: "dict(net_arch=[400, 300])"
+  optimize_action_epsilon: 0.1 
+  ncopt_epsilon: 1.
+  ncopt_T: 100
+  ncopt_lr: 0.2
+  ncopt_lr_sigma: 0.1
+  ncopt_c: 0.5
+  ncopt_noise_scale: 0.05
+
+BipedalWalker-v3:
+  n_timesteps: !!float 1e6
+  policy: 'MlpPolicy'
+  gamma: 0.98
+  buffer_size: 200000
+  learning_starts: 10000
+  noise_type: 'normal'
+  noise_std: 0.1
+  gradient_steps: -1
+  train_freq: [1, "episode"]
+  learning_rate: !!float 1e-3
+  policy_kwargs: "dict(net_arch=[400, 300])"
+  optimize_action_epsilon: 0.25
+  ncopt_epsilon: 1.
+  ncopt_T: 100
+  ncopt_lr: 0.2
+  ncopt_lr_sigma: 0.1
+  ncopt_c: 0.5
+  ncopt_noise_scale: 0.05
+
+# === Mujoco Envs ===
+
+HalfCheetah-v3: &mujoco-defaults
+  n_timesteps: !!float 1e6
+  policy: 'MlpPolicy'
+  learning_starts: 10000
+  noise_type: 'normal'
+  noise_std: 0.1
+  optimize_action_epsilon: 0.25
+  ncopt_epsilon: 1.
+  ncopt_T: 100
+  ncopt_lr: 0.2
+  ncopt_lr_sigma: 0.1
+  ncopt_c: 0.5
+  ncopt_noise_scale: 0.05
+
+Ant-v3:
+  <<: *mujoco-defaults
+  
+Walker2d-v3:
+  <<: *mujoco-defaults
+  
